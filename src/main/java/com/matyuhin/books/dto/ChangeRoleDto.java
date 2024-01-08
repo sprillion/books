@@ -1,6 +1,5 @@
-package com.matyuhin.books.models;
+package com.matyuhin.books.dto;
 
-import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +9,8 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FormAnswer {
-    private String param;
+public class ChangeRoleDto {
+
+    private int userId;
+    private String role;
 }

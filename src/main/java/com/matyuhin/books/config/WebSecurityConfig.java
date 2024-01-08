@@ -52,7 +52,7 @@ public class WebSecurityConfig {
         http.formLogin(form -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/listBooks")
+                .defaultSuccessUrl("/index")
                 .permitAll()
         );
 

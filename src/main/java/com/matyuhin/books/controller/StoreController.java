@@ -90,10 +90,10 @@ public class StoreController {
 
     @GetMapping("/deleteStore")
     public String deleteStore(@RequestParam Long storeId) {
-        booksInStoreRepository.deleteByStoreId(storeId);
-        booksInStoreRepository.deleteInStoreCreatorByStoreId(storeId);
-        storeRepository.deleteById(storeId);
         logService.AddLog(ActionType.DELETE, ObjectType.STORE, storeId);
+        booksInStoreRepository.deleteByStoreId(storeId);
+        storeRepository.deleteInStoreCreatorByStoreId(storeId);
+        storeRepository.deleteById(storeId);
         return "redirect:/listStores";
     }
 
@@ -157,8 +157,9 @@ public class StoreController {
     @GetMapping("/deleteBookInStore")
     public String deleteBookInStore(@RequestParam Long bookId, @RequestParam Long storeId) {
         BooksInStore booksInStore = booksInStoreRepository.selectBookInStore(bookId, storeId);
-        booksInStoreRepository.deleteByBookIdAndStoreId(bookId, storeId);
         logService.AddLog(ActionType.REMOVE, ObjectType.BOOK_IN_STORE, booksInStore.getId());
+        booksInStoreRepository.deleteByBookIdAndStoreId(bookId, storeId);
         return "redirect:/listBooksInStore?storeId=" + storeId;
     }
+
 }

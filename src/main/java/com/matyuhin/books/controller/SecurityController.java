@@ -21,7 +21,6 @@ import java.util.Arrays;
 public class SecurityController {
 
     private UserService userService;
-    private UserRepository userRepository;
     public SecurityController(UserService userService) {
         this.userService = userService;
     }

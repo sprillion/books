@@ -30,14 +30,11 @@ public class BookController {
     private BooksInStoreRepository booksInStoreRepository;
     @Autowired
     private LogService logService;
-    @Autowired
-    private UserService userService;
 
     @GetMapping({"/listBooks"})
     public ModelAndView getAllBooks() {
         var mav = new ModelAndView("list-books");
         mav.addObject("books", bookRepository.findAll());
-        //mav.addObject("user", userService.getCurrentUser());
         return mav;
     }
 
@@ -80,9 +77,9 @@ public class BookController {
 
     @GetMapping("/deleteBook")
     public String deleteBook(@RequestParam Long bookId) {
+        logService.AddLog(ActionType.DELETE, ObjectType.BOOK, bookId);
         booksInStoreRepository.deleteByBookId(bookId);
         bookRepository.deleteById(bookId);
-        logService.AddLog(ActionType.DELETE, ObjectType.BOOK, bookId);
         return "redirect:/listBooks";
     }
 }

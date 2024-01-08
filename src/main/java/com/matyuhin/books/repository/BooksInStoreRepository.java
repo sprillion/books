@@ -27,11 +27,6 @@ public interface BooksInStoreRepository extends JpaRepository<BooksInStore, Long
     @Query("delete from BooksInStore b where b.store.id = :storeId")
     void deleteByStoreId(@Param("storeId") Long storeId);
 
-    @Modifying
-    @Transactional
-    @Query(value = "delete from STORES_CREATOR where STORE_ID = :storeId", nativeQuery = true)
-    void deleteInStoreCreatorByStoreId(@Param("storeId") Long storeId);
-
     @Transactional
     @Query(value = "select * from BOOKS_IN_STORE where BOOK_ID = :bookId and STORE_ID = :storeId", nativeQuery = true)
     BooksInStore selectBookInStore(@Param("bookId") Long bookId, @Param("storeId") Long storeId);

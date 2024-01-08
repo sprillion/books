@@ -97,10 +97,10 @@ public class UserServiceImpl implements UserService {
         return userDto;
     }
 
-    private Role addRole(Roles roles) {
+    private void addRole(Roles roles) {
         var role = new Role();
         role.setName(roles.toString());
-        return roleRepository.save(role);
+        roleRepository.save(role);
     }
 
 }
